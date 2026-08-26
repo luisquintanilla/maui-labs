@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:core="clr-namespace:DocumentExtractionWorkbench.Core"
+             x:Class="DocumentExtractionWorkbench.MainPage"
+             x:DataType="core:DocumentExtractionWorkbenchViewModel"
+             Title="Document Extraction Workbench">
+    <ContentPage.BackgroundColor>
+        <AppThemeBinding Light="#F8FAFC" Dark="#0F172A" />
+    </ContentPage.BackgroundColor>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20"
+                             Spacing="16"
+                             MaximumWidthRequest="1080"
+                             HorizontalOptions="Center">
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Document Extraction Workbench"
+                       FontSize="30"
+                       FontAttributes="Bold" />
+                <Label Text="A deterministic, provider-neutral harness for the temporary document extraction contract."
+                       FontSize="14"
+                       TextColor="#64748B" />
+            </VerticalStackLayout>
+
+            <Border Stroke="#CBD5E1"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="16">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Provider diagnostics"
+                           FontSize="18"
+                           FontAttributes="Bold" />
+                    <Label AutomationId="ProviderIdentityText"
+                           Text="{Binding ProviderIdentity}"
+                           FontAttributes="Bold" />
+                    <Label AutomationId="ProviderAvailabilityText"
+                           Text="{Binding ProviderAvailability, StringFormat='Availability: {0}'}" />
+                    <Label AutomationId="ProviderReadinessText"
+                           Text="{Binding ProviderReadiness, StringFormat='Readiness: {0}'}" />
+                    <Label AutomationId="ProviderCapabilitiesText"
+                           Text="{Binding ProviderCapabilities, StringFormat='Capabilities: {0}'}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Stroke="#CBD5E1"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="16">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Input and extraction"
+                           FontSize="18"
+                           FontAttributes="Bold" />
+                    <FlexLayout Direction="Row"
+                                Wrap="Wrap"
+                                JustifyContent="Start"
+                                AlignItems="Center">
+                        <Button AutomationId="LoadFixtureButton"
+                                Text="Load fixture"
+                                Margin="0,0,8,8"
+                                IsEnabled="{Binding CanLoadInput}"
+                                Clicked="OnLoadFixtureClicked" />
+                        <Button AutomationId="ImportFileButton"
+                                Text="Import image"
+                                Margin="0,0,8,8"
+                                IsEnabled="{Binding CanLoadInput}"
+                                Clicked="OnImportFileClicked" />
+                        <Button AutomationId="ExtractDocumentButton"
+                                Text="Extract"
+                                Margin="0,0,8,8"
+                                BackgroundColor="{StaticResource WorkbenchAccent}"
+                                TextColor="White"
+                                IsEnabled="{Binding CanExtract}"
+                                Clicked="OnExtractClicked" />
+                        <Button AutomationId="CancelExtractionButton"
+                                Text="Cancel"
+                                Margin="0,0,8,8"
+                                IsEnabled="{Binding CanCancel}"
+                                Clicked="OnCancelClicked" />
+                    </FlexLayout>
+                    <Label AutomationId="SourceDocumentText"
+                           Text="{Binding SourceDocument.DisplayName, StringFormat='Source: {0}'}" />
+                    <Label AutomationId="ExtractionStatusText"
+                           Text="{Binding StatusMessage}" />
+                    <Label AutomationId="CancellationStateText"
+                           Text="{Binding CancellationState}" />
+                    <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                       IsVisible="{Binding IsBusy}"
+                                       Color="{StaticResource WorkbenchAccent}" />
+                    <Label AutomationId="ErrorStateText"
+                           Text="{Binding ErrorMessage}"
+                           IsVisible="{Binding HasError}"
+                           TextColor="#B91C1C"
+                           FontAttributes="Bold" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Stroke="#CBD5E1"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="12">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Source page and extracted regions"
+                           FontSize="18"
+                           FontAttributes="Bold" />
+                    <Label Text="The image and GraphicsView share an AspectFit surface. The overlay maps the provider's explicit page unit and origin without guessing rotation."
+                           FontSize="12"
+                           TextColor="#64748B" />
+                    <Grid HeightRequest="520"
+                          BackgroundColor="#E2E8F0">
+                        <Image x:Name="SourceImage"
+                               AutomationId="SourceDocumentImage"
+                               Aspect="AspectFit"
+                               SemanticProperties.Description="Selected source document image" />
+                        <GraphicsView x:Name="GeometryOverlay"
+                                      AutomationId="GeometryOverlay"
+                                      InputTransparent="True"
+                                      SemanticProperties.Description="Extracted document region overlay" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Border Grid.Column="0"
+                        Stroke="#CBD5E1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="12">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Extracted text"
+                               FontSize="18"
+                               FontAttributes="Bold" />
+                        <Editor AutomationId="ExtractedText"
+                                Text="{Binding ExtractedText}"
+                                IsReadOnly="True"
+                                MinimumHeightRequest="180"
+                                AutoSize="TextChanges" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Stroke="#CBD5E1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="12">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Page and region geometry"
+                               FontSize="18"
+                               FontAttributes="Bold" />
+                        <Editor AutomationId="GeometrySummaryText"
+                                Text="{Binding GeometrySummary}"
+                                IsReadOnly="True"
+                                MinimumHeightRequest="180"
+                                AutoSize="TextChanges" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DocumentExtractionWorkbench.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="WorkbenchPrimary">#312E81</Color>
+            <Color x:Key="WorkbenchAccent">#4F46E5</Color>
+            <Style TargetType="Button">
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Padding" Value="14,10" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor">
+                    <Setter.Value>
+                        <AppThemeBinding Light="#0F172A" Dark="#E2E8F0" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
