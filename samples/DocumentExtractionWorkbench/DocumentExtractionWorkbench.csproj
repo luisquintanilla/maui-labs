@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net10.0-android</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DocumentExtractionWorkbench</RootNamespace>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <IsPackable>false</IsPackable>
+    <ApplicationTitle>Document Extraction Workbench</ApplicationTitle>
+    <ApplicationId>com.microsoft.maui.documentextraction.workbench</ApplicationId>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+    <WindowsPackageType>None</WindowsPackageType>
+    <NoWarn>$(NoWarn);MEDE0001</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Maui.Controls" />
+    <PackageReference Include="Microsoft.Maui.Essentials" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AI\DocumentExtraction.ContractProposal\Microsoft.Extensions.DocumentExtraction.Abstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MauiImage Include="Resources\Images\document_fixture.svg" BaseSize="600,800" />
+    <EmbeddedResource Include="Resources\Images\document_fixture.svg"
+                      LogicalName="DocumentExtractionWorkbench.document_fixture.svg" />
+  </ItemGroup>
+
+</Project>

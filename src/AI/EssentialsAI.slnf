@@ -2,6 +2,7 @@
   "solution": {
     "path": "../../MauiLabs.slnx",
     "projects": [
+      "samples\\DocumentExtractionWorkbench\\DocumentExtractionWorkbench.csproj",
       "samples\\EssentialsAISample\\EssentialsAISample.csproj",
       "src\\AI\\DocumentExtraction.ContractProposal\\Microsoft.Extensions.DocumentExtraction.Abstractions.csproj",
       "src\\AI\\Microsoft.Maui.Essentials.AI\\Microsoft.Maui.Essentials.AI.csproj",

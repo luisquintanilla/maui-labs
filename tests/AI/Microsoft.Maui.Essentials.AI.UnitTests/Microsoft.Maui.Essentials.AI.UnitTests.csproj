@@ -5,7 +5,7 @@
     <AssemblyName>Microsoft.Maui.Essentials.AI.UnitTests</AssemblyName>
     <RootNamespace>Microsoft.Maui.Essentials.AI.UnitTests</RootNamespace>
     <IsPackable>false</IsPackable>
-    <NoWarn>$(NoWarn);MAUIAI0001</NoWarn>
+    <NoWarn>$(NoWarn);MAUIAI0001;MEDE0001</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\AI\Microsoft.Maui.Essentials.AI\Microsoft.Maui.Essentials.AI.csproj" />
+    <ProjectReference Include="..\..\..\src\AI\DocumentExtraction.ContractProposal\Microsoft.Extensions.DocumentExtraction.Abstractions.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +25,8 @@
     <Compile Include="..\..\..\samples\EssentialsAISample\Services\StreamingJsonDeserializer.cs" Link="Services\StreamingJsonDeserializer.cs" />
     <Compile Include="..\..\..\samples\EssentialsAISample\Services\BufferedChatClient.cs" Link="Services\BufferedChatClient.cs" />
     <Compile Include="..\..\..\samples\EssentialsAISample\Services\JsonMerger.cs" Link="Services\JsonMerger.cs" />
+    <Compile Include="..\..\..\samples\DocumentExtractionWorkbench\Core\**\*.cs" Link="DocumentExtractionWorkbench\%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\..\..\samples\DocumentExtractionWorkbench\Resources\Images\document_fixture.svg" LogicalName="DocumentExtractionWorkbench.document_fixture.svg" />
   </ItemGroup>
 
   <ItemGroup>

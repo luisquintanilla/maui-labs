@@ -6,6 +6,7 @@ on:
     paths:
       - 'src/AI/**'
       - 'tests/AI/**'
+      - 'samples/DocumentExtractionWorkbench/**'
       - 'samples/EssentialsAISample/**'
       - 'eng/**'
       - 'Directory.Build.props'
@@ -19,6 +20,7 @@ on:
     paths:
       - 'src/AI/**'
       - 'tests/AI/**'
+      - 'samples/DocumentExtractionWorkbench/**'
       - 'samples/EssentialsAISample/**'
       - 'eng/**'
       - 'Directory.Build.props'
